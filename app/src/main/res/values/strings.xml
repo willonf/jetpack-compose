@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Applications</string>
+    <string name="title_activity_calculadora_soma">CalculadoraSoma</string>
 </resources>

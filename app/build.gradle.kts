@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.applications"
-        minSdk = 35
+        minSdk = 30
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -40,6 +40,16 @@ android {
 }
 
 dependencies {
+
+//   val ktorVersion = "3.0.3"
+//   implementation("io.ktor:ktor-client-android: $ktorVersion")
+//   implementation("io.ktor:ktor-client-logging: $ktorVersion")
+//   implementation("io.ktor:ktor-client-content-negotiation: $ktorVersion")
+//   implementation("io.ktor:ktor-serialization-kotlinx-json: $ktorVersion")
+//   implementation("org.slf4j:slf4j-android:1.7.36")
+//   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+
+//   implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
