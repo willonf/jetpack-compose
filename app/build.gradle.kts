@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -41,16 +42,7 @@ android {
 
 dependencies {
 
-//   val ktorVersion = "3.0.3"
-//   implementation("io.ktor:ktor-client-android: $ktorVersion")
-//   implementation("io.ktor:ktor-client-logging: $ktorVersion")
-//   implementation("io.ktor:ktor-client-content-negotiation: $ktorVersion")
-//   implementation("io.ktor:ktor-serialization-kotlinx-json: $ktorVersion")
-//   implementation("org.slf4j:slf4j-android:1.7.36")
-//   implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
-
-//   implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
-
+    implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
