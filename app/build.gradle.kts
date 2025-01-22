@@ -42,7 +42,9 @@ android {
 
 dependencies {
 
-    implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
+    val nav_version = "2.8.5"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -59,3 +61,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+
+//dependencies {
+//    implementation("androidx.datastore:datastore-preferences-core:1.1.2")
+//}
