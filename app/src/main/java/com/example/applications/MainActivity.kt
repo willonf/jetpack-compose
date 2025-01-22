@@ -7,21 +7,24 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -45,7 +48,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ApplicationsTheme {
-                CalculatorScreen()
+                ExemploScaffold()
             }
         }
     }
@@ -57,37 +60,38 @@ fun CalculatorScreen() {
     var result by remember { mutableStateOf("") }
     var operadorEscolhido by remember { mutableStateOf<Char?>(null) }
     var valor1 by remember { mutableStateOf<Double?>(null) }
-    var operand2 by remember { mutableStateOf<Double?>(null) }
+    var valor2 by remember { mutableStateOf<Double?>(null) }
 
-    fun handleInput(value: String) {
-        when (value) {
+    fun handleInput(label: String) {
+        when (label) {
             "C" -> {
                 entrada = ""
                 result = ""
                 operadorEscolhido = null
                 valor1 = null
-                operand2 = null
+                valor2 = null
             }
+
             "+", "-", "×", "÷" -> {
                 if (valor1 == null && entrada.isNotEmpty()) {
                     valor1 = entrada.toDoubleOrNull()
-                    operadorEscolhido = value.first()
+                    operadorEscolhido = label.first()
                     entrada = ""
                 }
             }
+
             "=" -> {
-                if (valor1 != null && entrada.isNotEmpty()) {
-                    operand2 = entrada.toDoubleOrNull()
-                    if (operand2 != null) {
-                        result = performCalculation(valor1!!, operand2!!, operadorEscolhido)
-                        entrada = result
-                        valor1 = null
-                        operand2 = null
-                        operadorEscolhido = null
-                    }
+                valor2 = entrada.toDoubleOrNull()
+                if (valor2 != null) {
+                    result = calcular(valor1!!, valor2!!, operadorEscolhido)
+                    entrada = result
+                    valor1 = null
+                    valor2 = null
+                    operadorEscolhido = null
                 }
             }
-            else -> entrada += value
+
+            else -> entrada += label
         }
     }
 
@@ -145,12 +149,21 @@ fun CalculatorScreen() {
                             modifier = Modifier
                                 .weight(1f)
                                 .aspectRatio(1f),
-
-                            ) {
+                        ) {
                             Text(
                                 text = label,
                                 fontSize = 20.sp,
-                                color = if (label in listOf("÷", "×", "-", "+", "=")) Color.White else Color.Black
+                                color = if (label in listOf(
+                                        "÷",
+                                        "×",
+                                        "-",
+                                        "+",
+                                        "=",
+                                        "C",
+                                        "%",
+                                        "+/-"
+                                    )
+                                ) Color.White else Color.Black
                             )
                         }
                     }
@@ -160,7 +173,7 @@ fun CalculatorScreen() {
     }
 }
 
-fun performCalculation(operando1: Double, operando2: Double, operador: Char?): String {
+fun calcular(operando1: Double, operando2: Double, operador: Char?): String {
     return when (operador) {
         '+' -> (operando1 + operando2).toString()
         '-' -> (operando1 - operando2).toString()
@@ -170,12 +183,67 @@ fun performCalculation(operando1: Double, operando2: Double, operador: Char?): S
     }
 }
 
+@Composable
+fun ExemploColumn() {
+    Column(
+        modifier = Modifier.fillMaxHeight(),
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(text = "Topo", fontSize = 40.sp)
+        Text(text = "Centro", fontSize = 40.sp)
+        Text(text = "Base", fontSize = 40.sp)
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun ExemploScaffold() {
+    var pressionado by remember { mutableIntStateOf(0) }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text(text = "TOP APP BAR") })
+        },
+        bottomBar = {
+            BottomAppBar(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.primary
+            ) {
+                Text(
+                    "BOTTOM APP BAR",
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+            }
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { pressionado++ }
+            ) {
+                Icon(Icons.Default.Add, contentDescription = "")
+            }
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier.padding(innerPadding),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Text(
+                text = "Você pressionou $pressionado vezes",
+                modifier = Modifier.padding(8.dp),
+                fontSize = 25.sp
+            )
+        }
+
+    }
+
+}
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     ApplicationsTheme {
-
-        CalculatorScreen()
+        ExemploScaffold()
     }
 }
