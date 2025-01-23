@@ -1,43 +1,33 @@
 package com.example.applications.components
 
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.KeyboardType
-import com.example.applications.ui.theme.ShapeTextEdit
 
 @Composable
-fun MyTextField(
+fun CustomTextField(
     value: String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier,
     label: String,
-    maxLines: Int,
-    keyboardType: KeyboardType
+    modifier: Modifier,
+    onValueChange: (String) -> Unit,
+    maxLines: Int
 ) {
-
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
+        label = { Text(text = label) },
         modifier = modifier,
-        label = {
-            Text(text = label)
-        },
         maxLines = maxLines,
         colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = Color.Blue,
             focusedLabelColor = Color.Blue,
             cursorColor = Color.Blue
-        ),
-        shape = ShapeTextEdit.small,
-        keyboardOptions = KeyboardOptions(
-            keyboardType = keyboardType
         )
     )
+
+
 }
-
-
