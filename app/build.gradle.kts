@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.applications"
-        minSdk = 30
+        minSdk = 33
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -41,10 +41,13 @@ android {
 }
 
 dependencies {
-
-    val nav_version = "2.8.5"
-
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation(platform(libs.firebase.bom))
+    //implementation(libs.com.google.firebase.firebase.firestore2)
+    implementation(libs.firebase.firestore.ktx)
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.firebase.common.ktx)
+    implementation(libs.androidx.constraintlayout.compose)
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

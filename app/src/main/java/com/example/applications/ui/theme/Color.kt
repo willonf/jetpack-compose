@@ -10,9 +10,11 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val GreenRadioButtonDisabled = Color(0xFF46BE4B)
+val GreenRadioButtonUnselected = Color(0xFF46BE4B)
 val GreenRadioButtonSelected = Color(0xFF318635)
-val YellowRadioButtonDisabled = Color(0xFFFFC107)
+
+val YellowRadioButtonUnselected = Color(0xFFFFC107)
 val YellowRadioButtonSelected = Color(0xFFFFEB3B)
-val RedRadioButtonDisabled = Color(0xFFFF1100)
+
+val RedRadioButtonUnselected = Color(0xFFFF1100)
 val RedRadioButtonSelected = Color(0xFFFF1100)

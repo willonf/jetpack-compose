@@ -14,14 +14,16 @@ fun CustomButtom(
     onClick: () -> Unit,
     modifier: Modifier,
     label: String,
+    buttonColor: Color,
+    contentColor: Color
 ) {
 
     Button(
-        onClick = {},
-        modifier,
+        onClick = onClick,
+        modifier = modifier,
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Blue,
-            contentColor = Color.White
+            containerColor = buttonColor,
+            contentColor = contentColor
         )
     ) {
         Text(text = label, fontWeight = FontWeight.Bold, fontSize = 18.sp)

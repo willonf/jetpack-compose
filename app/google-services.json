@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "413897298674",
+    "project_id": "listadetarefas-ca220",
+    "storage_bucket": "listadetarefas-ca220.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413897298674:android:213ca343e2748a7ae7b66b",
+        "android_client_info": {
+          "package_name": "com.example.applications"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlXKwRqKWMvIVh7GDy6qjT8tC8rzS6i6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
