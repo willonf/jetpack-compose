@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.datastore.preferences)
     implementation(platform(libs.firebase.bom))
     //implementation(libs.com.google.firebase.firebase.firestore2)
     implementation(libs.firebase.firestore.ktx)
