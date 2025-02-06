@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -41,6 +42,17 @@ android {
 }
 
 dependencies {
+    val ktor_version="3.0.3"
+
+    implementation("io.ktor:ktor-client-android:$ktor_version")
+    implementation("io.ktor:ktor-client-logging:$ktor_version")
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation("org.slf4j:slf4j-android:1.7.36")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+
+
     implementation(libs.androidx.datastore.preferences)
     implementation(platform(libs.firebase.bom))
     //implementation(libs.com.google.firebase.firebase.firestore2)
